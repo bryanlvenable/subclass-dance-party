@@ -7,6 +7,10 @@ var Dancer = function(top, left, timeBetweenSteps){
   this.timeBetweenSteps = timeBetweenSteps;
   this.step();
   this.setPosition(this.top, this.left);
+  this.colors = ['red', 'green', 'yellow', 'violet', 'cyan', 'orange', 'blue'];
+  this.$node.on('mouseover', function(event){
+
+  });
 };
 
 Dancer.prototype.step = function(){
@@ -28,6 +32,36 @@ Dancer.prototype.setPosition = function(top, left){
   };
 
   this.$node.css(styleSettings);
+};
+
+Dancer.prototype.distance = function(dancerA, dancerB){
+  y = dancerA.top - dancerB.top;
+  x = dancerA.left - dancerB.left;
+  var c = Math.sqrt(y*y + x*x);
+  return c;
+};
+
+Dancer.prototype.findClosest = function (event) {
+  var closestDistance;
+  var closestDancer;
+  dancers.forEach(function (dancer) {
+    if (event.top !== dancer.top && event.left !== dancer.left) {
+      if (!closestDistance) {
+        closestDistance = this.distance(event, dancer);
+        closestDancer = dancer;
+      } else {
+        var currentDistance = this.distance(event, dancer);
+        if (currentDistance < closestDistance) {
+          closestDistance = currentDistance;
+          closestDancer = dancer;
+        }
+      }
+    }
+  }.bind(this));
+  var style = Math.floor(Math.random() * 10) + 'px solid ';
+  var color = this.colors[Math.floor(Math.random() * this.colors.length-1)];
+  this.$node.css('border', style + color);
+  closestDancer.$node.css('border', style + color);
 };
 
 

@@ -1,5 +1,12 @@
 var BlinkyDancer = function(top, left, timeBetweenSteps){
   Dancer.call(this, top, left, timeBetweenSteps);
+  this.$node.on('click', function () {
+    this.$node.animate({
+      'top': '+=' + (Math.random() * 100) + 'px',
+      'left': '+=' + (Math.random() * 100) + 'px'
+    });
+    Dancer.prototype.findClosest.call(this, event);
+  }.bind(this));
 };
 
 BlinkyDancer.prototype = Object.create(Dancer.prototype);

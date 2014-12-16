@@ -44,11 +44,13 @@ $(document).ready(function(){
       return c;
     };
 
-    var closest = distance(dancer[0].top - dancer[1], dancer[0].left);
-    dancers.forEach(function (dancer) {
-      var closestDancer = distance(dancer.top, dancer.left);
-      if (closestDancer < closest)){
-        closest = closestDancer;
+    var closest = distance(dancer[0].top, dancer[0].left, dancer[1].top, dancer[1].left);
+    var currentClosest = dancer[1];
+    var tempDancers = dancers.slice(2);
+    tempDancers.forEach(function (dancer) {
+      var tempDistance = distance(dancer[0].top, dancer[0].left, dancer.top, dancer.left);
+      if (tempDistance < closest){
+        currentClosest = dancer;
       }
     });
 

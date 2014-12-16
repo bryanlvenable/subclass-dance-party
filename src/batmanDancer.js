@@ -2,6 +2,13 @@ var BatmanDancer = function(top, left, timeBetweenSteps){
   Dancer.call(this, top, left, timeBetweenSteps);
   this.$node = $('<span class="batman"><img src="https://31.media.tumblr.com/tumblr_mecbh7XNdz1rgpyeqo1_500.gif" /></span>');
   this.$node.css({top: top, left: left});
+  this.$node.on('click', function () {
+    this.$node.animate({
+      'top': '+=' + (Math.random() * 100) + 'px',
+      'left': '+=' + (Math.random() * 100) + 'px'
+    });
+    Dancer.prototype.findClosest.call(this, event);
+  }.bind(this));
 };
 
 BatmanDancer.prototype = Object.create(Dancer.prototype);
