@@ -37,8 +37,10 @@ $(document).ready(function(){
 
   });
   $(".nearestPartner").on("click", function(event){
-    var distance = function(a, b){
-      var c = Math.sqrt(a*a + b*b);
+    var distance = function(aTop, aBot, bTop, bBot){
+      y = aTop - bTop;
+      x = aBot - bBot;
+      var c = Math.sqrt(y*y + x*x);
       return c;
     };
 
