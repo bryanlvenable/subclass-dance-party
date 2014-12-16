@@ -25,3 +25,23 @@ body, a:link, a:visited, a:active{
   border-radius:10px;
   position:absolute;
 }
+.batman{
+  border:10px solid yellow;
+  border-radius:10px;
+  position:absolute;
+}
+
+.batman img {
+  height: 70px;
+  width: 70px;
+}
+
+.flashy{
+  border-radius:10px;
+  position:absolute;
+}
+
+.flashy img {
+  height: 120px;
+  width: 180px;
+}

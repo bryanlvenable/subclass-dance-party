@@ -22,12 +22,34 @@ $(document).ready(function(){
 
     // make a dancer with a random position
 
-    var dancer = dancerMakerFunction(
+    var dancer = new dancerMakerFunction(
       $("body").height() * Math.random(),
       $("body").width() * Math.random(),
-      Math.random() * 1000
+      Math.random() * 5000
     );
+    dancers.push(dancer);
     $('body').append(dancer.$node);
   });
+  $(".lineUp").on("click", function(event){
+    dancers.forEach(function (dancer) {
+      dancer.$node.css({left: 100 });
+    });
+
+  });
+  $(".nearestPartner").on("click", function(event){
+    var distance = function(a, b){
+      var c = Math.sqrt(a*a + b*b);
+      return c;
+    };
+
+    var closest = distance(dancer[0].top - dancer[1], dancer[0].left);
+    dancers.forEach(function (dancer) {
+      var closestDancer = distance(dancer.top, dancer.left);
+      if (closestDancer < closest)){
+        closest = closestDancer;
+      }
+    });
+
+  })
 });
 
